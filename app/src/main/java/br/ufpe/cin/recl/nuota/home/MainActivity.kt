@@ -2,8 +2,6 @@ package br.ufpe.cin.recl.nuota.home
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
-import androidx.annotation.VisibleForTesting
-import androidx.compose.foundation.layout.Box
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.setContent
 import br.ufpe.cin.recl.nuota.base.NuotaScaffold
@@ -20,12 +18,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@VisibleForTesting
 @Composable
 fun MainScreen() {
-    NuotaScaffold {
-        Box {
-        }
-    }
-
+    NuotaScaffold()
 }

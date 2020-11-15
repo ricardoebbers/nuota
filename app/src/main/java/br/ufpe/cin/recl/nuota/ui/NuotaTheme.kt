@@ -23,7 +23,8 @@ val colors = lightColors(
     secondary = red,
     surface = purple_900,
     onSurface = white,
-    primaryVariant = purple_700
+    primaryVariant = purple_700,
+    background = purple_900
 )
 
 val BottomSheetShape = RoundedCornerShape(
