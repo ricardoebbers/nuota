@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.preferredHeight
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import br.ufpe.cin.recl.nuota.base.NuotaScreen
 
 @Composable
 fun HomeBody() {

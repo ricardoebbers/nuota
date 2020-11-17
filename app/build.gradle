@@ -1,4 +1,3 @@
-
 import br.ufpe.cin.recl.nuota.buildsrc.Libs
 
 plugins {
@@ -31,7 +30,7 @@ android {
             }
         }
 
-        manifestPlaceholders = [ googleMapsKey : properties.getProperty("google.maps.key", "") ]
+        manifestPlaceholders = [googleMapsKey: properties.getProperty("google.maps.key", "")]
     }
 
     buildTypes {
@@ -95,6 +94,7 @@ dependencies {
     implementation Libs.AndroidX.Lifecycle.viewModelKtx
     implementation Libs.Hilt.android
     implementation Libs.Hilt.AndroidX.viewModel
+    implementation Libs.Firebase.firestore
     compileOnly Libs.AssistedInjection.dagger
     kapt Libs.Hilt.compiler
     kapt Libs.Hilt.AndroidX.compiler
