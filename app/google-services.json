@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "624483519322",
+    "firebase_url": "https://nuota-295623.firebaseio.com",
+    "project_id": "nuota-295623",
+    "storage_bucket": "nuota-295623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624483519322:android:76ce027b34e7bfe5550163",
+        "android_client_info": {
+          "package_name": "br.ufpe.cin.recl.nuota"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624483519322-83g5q9qfkfh40vmuh58rmdhou8q1aap6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBECaTC94ty6doA5Sk7OZRl8rAZXay9Pkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624483519322-83g5q9qfkfh40vmuh58rmdhou8q1aap6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
