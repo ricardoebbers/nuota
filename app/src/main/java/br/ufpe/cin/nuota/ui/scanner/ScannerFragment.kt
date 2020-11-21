@@ -34,12 +34,13 @@ class ScannerFragment : Fragment() {
 
         val textView: TextView = binding.textScanner
 
-        if (scannerViewModel.url.value == "") {
+        if (scannerViewModel.model.value == ScanModel.empty()) {
             scanQrCode()
         }
-        scannerViewModel.url.observe(viewLifecycleOwner, {
-            textView.text = it
+        scannerViewModel.model.observe(viewLifecycleOwner, {
+            textView.text = it.url
         })
+        binding.button.setOnClickListener { scannerViewModel.send() }
         return root
     }
 
@@ -62,7 +63,7 @@ class ScannerFragment : Fragment() {
             if (result.contents == null) {
                 Toast.makeText(context, "Scan Cancelado", Toast.LENGTH_LONG).show()
             } else {
-                scannerViewModel.url.value = result.contents
+                scannerViewModel.model.value = ScanModel(result.contents)
             }
         }
     }

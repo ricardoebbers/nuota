@@ -5,8 +5,14 @@ import androidx.lifecycle.ViewModel
 
 class ScannerViewModel : ViewModel() {
 
-    private val _url = MutableLiveData<String>().apply {
-        value = ""
+    private val repository = ScannerRepository()
+
+    private val _init = MutableLiveData<ScanModel>().apply {
+        value = ScanModel.empty()
     }
-    val url: MutableLiveData<String> = _url
+    val model: MutableLiveData<ScanModel> = _init
+
+    fun send() {
+        repository.sendInvoiceUrl(model.value!!)
+    }
 }
