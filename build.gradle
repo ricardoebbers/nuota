@@ -1,46 +1,26 @@
-import br.ufpe.cin.recl.nuota.buildsrc.Libs
-import br.ufpe.cin.recl.nuota.buildsrc.Urls
-
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
+    ext.kotlin_version = "1.4.10"
     repositories {
         google()
         jcenter()
     }
     dependencies {
-        classpath Libs.androidGradlePlugin
-        classpath Libs.Kotlin.gradlePlugin
-        classpath Libs.Hilt.gradlePlugin
-        classpath Libs.gradle
-        classpath Libs.googleServices
+        classpath "com.android.tools.build:gradle:4.2.0-alpha14"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
     }
 }
 
-subprojects {
+allprojects {
     repositories {
         google()
         jcenter()
-        mavenCentral()
-
-        if (!Libs.AndroidX.Compose.snapshot.isEmpty()) {
-            maven { url Urls.composeSnapshotRepo }
-            maven { url Urls.mavenCentralSnapshotRepo }
-        }
     }
+}
 
-    tasks.withType(org.jetbrains.kotlin.gradle.tasks.KotlinCompile).configureEach {
-        kotlinOptions {
-            // Treat all Kotlin warnings as errors
-            allWarningsAsErrors = true
-
-            jvmTarget = "1.8"
-
-            // Use experimental APIs
-            freeCompilerArgs += '-Xopt-in=kotlin.RequiresOptIn'
-            freeCompilerArgs += '-Xallow-jvm-ir-dependencies'
-            freeCompilerArgs += [
-                    '-P',
-                    'plugin:androidx.compose.compiler.plugins.kotlin:intrinsicRemember=true'
-            ]
-        }
-    }
+task clean(type: Delete) {
+    delete rootProject.buildDir
 }

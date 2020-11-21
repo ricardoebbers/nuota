@@ -1,4 +1,6 @@
 <resources>
-    <string name="app_name">Nuota</string>
-    <string name="title_activity_maps">Map</string>
+    <string name="app_name">nuota</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 </resources>
