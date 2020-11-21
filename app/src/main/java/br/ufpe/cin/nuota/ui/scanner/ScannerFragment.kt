@@ -1,4 +1,4 @@
-package br.ufpe.cin.nuota.ui.dashboard
+package br.ufpe.cin.nuota.ui.scanner
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -6,15 +6,13 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import br.ufpe.cin.nuota.R
-import br.ufpe.cin.nuota.databinding.FragmentDashboardBinding
+import br.ufpe.cin.nuota.databinding.FragmentScannerBinding
 
-class DashboardFragment : Fragment() {
+class ScannerFragment : Fragment() {
 
-    private lateinit var dashboardViewModel: DashboardViewModel
-    private var _binding: FragmentDashboardBinding? = null
+    private lateinit var scannerViewModel: ScannerViewModel
+    private var _binding: FragmentScannerBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -25,14 +23,14 @@ class DashboardFragment : Fragment() {
             container: ViewGroup?,
             savedInstanceState: Bundle?
     ): View? {
-        dashboardViewModel =
-                ViewModelProvider(this).get(DashboardViewModel::class.java)
+        scannerViewModel =
+                ViewModelProvider(this).get(ScannerViewModel::class.java)
 
-        _binding = FragmentDashboardBinding.inflate(inflater, container, false)
+        _binding = FragmentScannerBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textDashboard
-        dashboardViewModel.text.observe(viewLifecycleOwner, {
+        val textView: TextView = binding.textScanner
+        scannerViewModel.text.observe(viewLifecycleOwner, {
             textView.text = it
         })
         return root
