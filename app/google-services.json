@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "624483519322",
+    "firebase_url": "https://nuota-295623.firebaseio.com",
+    "project_id": "nuota-295623",
+    "storage_bucket": "nuota-295623.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:624483519322:android:b055285fff536be8550163",
+        "android_client_info": {
+          "package_name": "br.ufpe.cin.nuota"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "624483519322-mg79v0ig752fbp46nqo4tjk1nmk7d91m.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.ufpe.cin.nuota",
+            "certificate_hash": "01f7999c2bb5ccba6dfdca9e81f560834522d137"
+          }
+        },
+        {
+          "client_id": "624483519322-83g5q9qfkfh40vmuh58rmdhou8q1aap6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAkDej3p25SfgIvciYVvOHbytEDr2uCluM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "624483519322-83g5q9qfkfh40vmuh58rmdhou8q1aap6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
