@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2020-11-22T18:42:40.104Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36" etag="2maLpbkm3j8kKTZEMuqb" version="13.10.0" type="github">
+<mxfile host="app.diagrams.net" modified="2020-11-22T19:56:24.944Z" agent="5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.66 Safari/537.36" etag="Qfvv30CyUcXRk7aNTvUe" version="13.10.0" type="github">
   <diagram id="z9jcVR7X5fvO8wejQ_GP" name="Page-1">
     <mxGraphModel dx="1718" dy="635" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -302,7 +302,7 @@
             </Array>
           </mxGeometry>
         </mxCell>
-        <mxCell id="ZAnNMVCAWFwMJwnLeOk6-81" value="users/{user_id}/products" style="html=1;fillColor=#5184F3;strokeColor=none;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;spacingTop=-6;fontSize=11;fontStyle=1;fontColor=#999999;shape=mxgraph.gcp2.hexIcon;prIcon=cloud_firestore" vertex="1" parent="1">
+        <mxCell id="ZAnNMVCAWFwMJwnLeOk6-81" value="users/{user_id}/purchases" style="html=1;fillColor=#5184F3;strokeColor=none;verticalAlign=top;labelPosition=center;verticalLabelPosition=bottom;align=center;spacingTop=-6;fontSize=11;fontStyle=1;fontColor=#999999;shape=mxgraph.gcp2.hexIcon;prIcon=cloud_firestore" vertex="1" parent="1">
           <mxGeometry x="860" y="1020" width="66" height="58.5" as="geometry" />
         </mxCell>
         <mxCell id="ZAnNMVCAWFwMJwnLeOk6-86" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.175;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;fontSize=12;" edge="1" parent="1" source="ZAnNMVCAWFwMJwnLeOk6-83" target="ZAnNMVCAWFwMJwnLeOk6-85">
