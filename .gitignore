@@ -17,3 +17,4 @@ local.properties
 
 # Logs
 functions/*.log
+ui-debug.log
