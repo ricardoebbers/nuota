@@ -1,10 +1,5 @@
-// import admin = require('firebase-admin');
-// import * as functions from 'firebase-functions';
+import {addUserToRegionHandler} from './add_user_to_region';
+import {addRegionHandler} from './test_add_region';
 
-// // Start writing Firebase Functions
-// // https://firebase.google.com/docs/functions/typescript
-//
-// export const helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
+export const addUserToRegion = addUserToRegionHandler;
+export const addRegion = addRegionHandler;
