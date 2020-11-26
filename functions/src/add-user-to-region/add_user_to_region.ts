@@ -7,7 +7,7 @@ export const addUserToRegionHandler = functions.firestore
         const invoice = snap.data();
         const regionId = invoice["region"];
         const userId = invoice["userId"];
-        const region = admin.firestore().collection('region').doc(regionId);
+        const region = admin.firestore().collection('regions').doc(regionId);
         await region.set({});
         await region.collection('users').doc(userId).set({});
     });

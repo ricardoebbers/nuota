@@ -18,10 +18,11 @@ export class InvoiceModel {
   constructor(
     public date: string,
     public store: StoreInterface,
-    public products: ProductsInterface[]
+    public products: ProductsInterface[],
+    public BuyerId: string
   ) {}
 
-  public static fromObject(json: any): InvoiceModel {
+  public static fromObject(json: any, BuyerId: string): InvoiceModel {
     const root = json.nfeProc.proc[0].nfeProc[0].NFe[0].infNFe[0];
     const storeData = root.emit[0];
     const productsData = root.det;
@@ -36,7 +37,7 @@ export class InvoiceModel {
     }
     const products = this.getProducts(productsData);
 
-    return new  InvoiceModel(date, store, products);
+    return new  InvoiceModel(date, store, products, BuyerId);
   }
 
   private static getProducts(products: any[]): ProductsInterface[] {
