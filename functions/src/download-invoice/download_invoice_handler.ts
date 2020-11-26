@@ -6,7 +6,8 @@ import { InvoiceModel } from '../shared/models/invoice-model';
 
 export const downloadInvoiceHandler = functions.firestore
     .document('event_invoice_input/{invoiceId}')
-    .onCreate(async (snap, _) => {
+    .onCreate(async (snap, context) => {
+        const invoiceId = context.params.invoiceId;
         const invoiceData = snap.data();
         const { url, userId } = invoiceData;
         const http = new XMLHttpRequest();
@@ -15,13 +16,13 @@ export const downloadInvoiceHandler = functions.firestore
 
         http.send();
 
-        http.onreadystatechange = async (response) => {
-          if(http.responseText !== '') {
-            parseString(http.responseText, async (err, result) => {
-              const invoice: InvoiceModel = InvoiceModel.fromObject(result, userId);
-              const writeResult = admin.firestore().collection('event_invoice_output');
-              await writeResult.add(JSON.parse(JSON.stringify(invoice)));
-            });
-          }
+        http.onreadystatechange = async (_) => {
+            if (http.responseText !== '') {
+                parseString(http.responseText, async (_, result) => {
+                    const invoice: InvoiceModel = InvoiceModel.fromObject(result, userId);
+                    const writeResult = admin.firestore().collection('event_invoice_output').doc(invoiceId);
+                    await writeResult.set(JSON.parse(JSON.stringify(invoice)));
+                });
+            }
         }
     });
