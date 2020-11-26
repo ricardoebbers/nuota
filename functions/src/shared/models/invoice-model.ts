@@ -19,7 +19,7 @@ export class InvoiceModel {
     public date: string,
     public store: StoreInterface,
     public products: ProductsInterface[],
-    public BuyerId: string
+    public buyerId: string
   ) {}
 
   public static fromObject(json: any, BuyerId: string): InvoiceModel {
