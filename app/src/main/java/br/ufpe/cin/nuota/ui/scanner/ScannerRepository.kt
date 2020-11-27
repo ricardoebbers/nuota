@@ -8,8 +8,6 @@ class ScannerRepository {
     private val userId = FirebaseAuth.getInstance().currentUser?.uid ?: "default"
 
     fun sendInvoiceUrl(scanModel: ScanModel) {
-        firestore.collection("users")
-            .document(userId)
-            .collection("invoices").add(scanModel)
+        firestore.collection("event_invoice_input").add(scanModel.copy(userId = userId))
     }
 }

@@ -7,7 +7,7 @@ export const createPromotionFromPurchaseHandler = functions.firestore
     .onCreate(async (snap, context) => {
         const regionId = context.params.regionId;
         const purchase = snap.data() as PurchasesInterface;
-        const productDoc = (await snap.ref.parent.parent?.get())?.data();
+        const productDoc = (await snap.ref.parent.parent?.get()).data();
         if (productDoc) {
             const sum = productDoc.sum;
             const count = productDoc.count;

@@ -2,6 +2,7 @@ package br.ufpe.cin.nuota.ui.scanner
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -15,6 +16,10 @@ import com.google.zxing.integration.android.IntentIntegrator
 
 class ScannerFragment : Fragment() {
 
+    companion object {
+        private const val TAG = "ScannerFragment"
+    }
+
     private lateinit var scannerViewModel: ScannerViewModel
     private var _binding: FragmentScannerBinding? = null
 
@@ -26,7 +31,7 @@ class ScannerFragment : Fragment() {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         scannerViewModel =
             ViewModelProvider(this).get(ScannerViewModel::class.java)
         _binding = FragmentScannerBinding.inflate(inflater, container, false)
@@ -40,11 +45,12 @@ class ScannerFragment : Fragment() {
         scannerViewModel.model.observe(viewLifecycleOwner, {
             textView.text = it.url
         })
-        binding.button.setOnClickListener { scannerViewModel.send() }
+        binding.button.setOnClickListener { scanQrCode() }
         return root
     }
 
     private fun scanQrCode() {
+        Log.i(TAG, "M=scanQrCode I=started_scanner")
         val integrator = IntentIntegrator.forSupportFragment(this)
         integrator.setPrompt("Escanear QR Code da Nota Fiscal")
         integrator.setBeepEnabled(false)
@@ -59,11 +65,15 @@ class ScannerFragment : Fragment() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+        Log.i(TAG, "M=onActivityResult I=got_result result=${result}")
         if (result != null) {
             if (result.contents == null) {
+                Log.i(TAG, "M=onActivityResult I=scan_cancelled")
                 Toast.makeText(context, "Scan Cancelado", Toast.LENGTH_LONG).show()
             } else {
+                Log.i(TAG, "M=onActivityResult I=scan_successful")
                 scannerViewModel.model.value = ScanModel(result.contents)
+                scannerViewModel.send()
             }
         }
     }
