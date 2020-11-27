@@ -1,3 +1,7 @@
+export function isInvalidCEAN(cEAN: string): boolean {
+    return isNaN(parseInt(cEAN));
+}
+
 export interface StoreInterface {
     cnpj: string,
     name: string,
