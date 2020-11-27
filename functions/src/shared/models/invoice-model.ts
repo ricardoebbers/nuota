@@ -43,7 +43,7 @@ export class InvoiceModel {
             name: storeData.xNome[0],
             addrStreet: storeData.enderEmit[0].xLgr[0],
             addrNumber: storeData.enderEmit[0].nro[0],
-            addrNeighborhood: storeData.enderEmit[0].xBairro[0]
+            addrNeighborhood: (storeData.enderEmit[0].xBairro[0] as string).trim().toUpperCase()
         }
         const products = this.getProducts(productsData);
 
