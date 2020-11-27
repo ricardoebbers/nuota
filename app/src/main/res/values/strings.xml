@@ -3,5 +3,5 @@
     <string name="title_home">Home</string>
     <string name="title_scanner">Escanear nota fiscal</string>
     <string name="title_sales">Promoções</string>
-    <string name="scan_test_button">Test</string>
+    <string name="scan_test_button">Escanear outra</string>
 </resources>

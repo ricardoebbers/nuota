@@ -20,6 +20,6 @@ export const createPromotionFromPurchaseHandler = functions.firestore
                   const promotions = admin.firestore().collection('regions').doc(regionId).collection('promotions');
                   await promotions.add({ purchase, average, discount });
               }
-          } 
+          }
         }
     });
