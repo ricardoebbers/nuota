@@ -6,6 +6,7 @@ import { addProductToRegionHistoryHandler } from './add-product-to-region-histor
 import { createPromotionFromPurchaseHandler } from './create-promotion-from-purchase/create_promotion_from_purchase'
 import { addInvoiceToUserHandler } from './add-invoice-to-user/add_invoice_to_user_handler';
 import * as admin from 'firebase-admin';
+import { addPromotionToUserHandler } from './add-promotion-to-user/add_promotion__to_user_handler';
 
 admin.initializeApp();
 
@@ -16,3 +17,4 @@ export const addInvoiceToUser = addInvoiceToUserHandler;
 export const addProductToUserHistory = addProductToUserHistoryHandler;
 export const addProductToRegionHistory = addProductToRegionHistoryHandler;
 export const createPromotionFromPurchase = createPromotionFromPurchaseHandler;
+export const addPromotionToUser = addPromotionToUserHandler
