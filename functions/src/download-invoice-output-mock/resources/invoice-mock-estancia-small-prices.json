@@ -1,0 +1,49 @@
+{
+  "date": "2020-11-20T19:13:06-03:00",
+  "store": {
+    "cnpj": "45543915041880",
+    "name": "CARREFOUR COMERCIO E INDUSTRIA LTDA",
+    "addrStreet": "RUA FRANCISCO DA CUNHA",
+    "addrNumber": "919",
+    "addrNeighborhood": "ESTANCIA"
+  },
+  "products": [
+    {
+      "cEAN": "3614612307500",
+      "description": "VASO ARGILA FX AZUL",
+      "unitValue": 17.9,
+      "quantity": 2
+    },
+    {
+      "cEAN": "7898914127271",
+      "description": "OVO GRANDE VERMELHO",
+      "unitValue": 7.68,
+      "quantity": 1
+    },
+    {
+      "cEAN": "7501001109660",
+      "description": "AP DEPIL GILLETE PRE",
+      "unitValue": 19.34,
+      "quantity": 1
+    },
+    {
+      "cEAN": "7896488812227",
+      "description": "SUBSTRATO ORQUIDEAS",
+      "unitValue": 19.99,
+      "quantity": 1
+    },
+    {
+      "cEAN": "7898080640611",
+      "description": "LEITE ITALAC INTEGRA",
+      "unitValue": 4.49,
+      "quantity": 3
+    },
+    {
+      "cEAN": "7891025320555",
+      "description": "IOG LIQ DANONE MORAN",
+      "unitValue": 10.99,
+      "quantity": 1
+    }
+  ],
+  "buyerId": "4"
+}
