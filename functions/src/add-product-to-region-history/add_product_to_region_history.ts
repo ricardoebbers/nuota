@@ -1,6 +1,6 @@
 import * as functions from 'firebase-functions';
 import * as admin from 'firebase-admin';
-import { InvoiceModel, PurchasesInterface } from '../shared/models/invoice-model';
+import { InvoiceModel, isInvalidCEAN, PurchasesInterface } from '../shared/models/invoice-model';
 
 export const addProductToRegionHistoryHandler = functions.firestore
     .document('event_invoice_output/{invoiceId}')
@@ -11,6 +11,9 @@ export const addProductToRegionHistoryHandler = functions.firestore
         await regionDoc.set({}, { merge: true });
 
         products.forEach(async (product) => {
+            if (isInvalidCEAN(product.cEAN)) {
+                return;
+            }
             const purchase: PurchasesInterface = { product, store, date };
             const productDoc = regionDoc.collection('products').doc(product.cEAN);
             const current = (await productDoc.get()).data();
