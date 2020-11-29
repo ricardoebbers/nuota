@@ -13,36 +13,6 @@
       "description": "VASO ARGILA FX AZUL",
       "unitValue": 50,
       "quantity": 2
-    },
-    {
-      "cEAN": "7898914127271",
-      "description": "OVO GRANDE VERMELHO",
-      "unitValue": 50,
-      "quantity": 1
-    },
-    {
-      "cEAN": "7501001109660",
-      "description": "AP DEPIL GILLETE PRE",
-      "unitValue": 50,
-      "quantity": 1
-    },
-    {
-      "cEAN": "7896488812227",
-      "description": "SUBSTRATO ORQUIDEAS",
-      "unitValue": 50,
-      "quantity": 1
-    },
-    {
-      "cEAN": "7898080640611",
-      "description": "LEITE ITALAC INTEGRA",
-      "unitValue": 50,
-      "quantity": 3
-    },
-    {
-      "cEAN": "7891025320555",
-      "description": "IOG LIQ DANONE MORAN",
-      "unitValue": 50,
-      "quantity": 1
     }
   ],
   "buyerId": "7"

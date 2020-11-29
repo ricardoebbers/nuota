@@ -7,12 +7,12 @@ export const addPromotionToUserHandler = functions.https.onRequest(async (_, res
   const promotions: PromotionInterface[][] = [];
   const usersId: string[][] = [];
 
-  const regions = await admin.firestore().collection('regions').get();
-  const populatePromotionsAndUsersIdPromise = regions.docs.map(async regionsDoc => {
+  const regionsCollecion = await admin.firestore().collection('regions').get();
+  const populatePromotionsAndUsersIdPromise = regionsCollecion.docs.map(async regionsDoc => {
     const regionPromotionList: PromotionInterface[] = [];
-    const promotionsDocList = await regionsDoc.ref.collection('promotions').get();
+    const promotionsCollection = await regionsDoc.ref.collection('promotions').get();
   
-    promotionsDocList.forEach(promotionsDoc => {
+    promotionsCollection.forEach(promotionsDoc => {
       const promotion = promotionsDoc.data();
       const promotionObject: PromotionInterface = {
         promotionId: promotionsDoc.id,
@@ -25,9 +25,9 @@ export const addPromotionToUserHandler = functions.https.onRequest(async (_, res
     });
 
     if(regionPromotionList) {
-      const usersDocList = await regionsDoc.ref.collection('users').get();
+      const usersCollection = await regionsDoc.ref.collection('users').get();
       const regionUsersList: string[] = [];
-      usersDocList.docs.map(regionUser => {
+      usersCollection.docs.map(regionUser => {
         regionUsersList.push(regionUser.id);
       });
       usersId.push(regionUsersList);
@@ -35,40 +35,33 @@ export const addPromotionToUserHandler = functions.https.onRequest(async (_, res
     }
   });
   await Promise.all(populatePromotionsAndUsersIdPromise);
-  // Nesse momento eu tenho duas matrizes que contém listas de pessoas e listas de produtos por região
   await setPromotionsToUsers(promotions, usersId, res);
 });
 
 const setPromotionsToUsers = async (promotions: PromotionInterface[][], usersId: string[][], res: functions.Response<any>): Promise<void> => {
-  await admin.firestore().collection('users').get().then(async usersSnapshot => {
-    const promises: Promise<FirebaseFirestore.WriteResult>[] = [];
-    usersSnapshot.forEach(async userDoc => {
-      const userId = userDoc.id;
-      const purchasesId: string[] = [];
-      await userDoc.ref.collection('purchases').get().then(purchasesSnapshot => {
-        purchasesSnapshot.forEach(purchasesDoc => {
-          purchasesId.push(purchasesDoc.id);
-        });
+  const usersCollection = await admin.firestore().collection('users').get();
+  const promises: Promise<FirebaseFirestore.WriteResult>[] = [];
+
+  usersCollection.forEach(async userDoc => {
+    const userId = userDoc.id;
+    const purchasesId: string[] = [];
+    await userDoc.ref.collection('purchases').get().then(purchasesSnapshot => {
+      purchasesSnapshot.forEach(purchasesDoc => {
+        purchasesId.push(purchasesDoc.id);
       });
-      for (const [index, regionUserList] of usersId.entries()) {
-        const userIndex = regionUserList.findIndex(regionUserId => regionUserId === userId);
-        if(userIndex !== -1) {
-          const userPromotionList = promotions[index].filter(promotion => {
-            return purchasesId.findIndex(purchaseId => purchaseId === promotion.purchase.product.cEAN) !== -1;
-          });
-          for (const promotion of userPromotionList) {
-            promises.push(userDoc.ref.collection('promotions').doc(promotion.promotionId).set(promotion));
-          }
+    });
+    for (const [index, regionUserList] of usersId.entries()) {
+      const userIndex = regionUserList.findIndex(regionUserId => regionUserId === userId);
+      if(userIndex !== -1) {
+        const userPromotionList = promotions[index].filter(promotion => {
+          return purchasesId.findIndex(purchaseId => purchaseId === promotion.purchase.product.cEAN) !== -1;
+        });
+        for (const promotion of userPromotionList) {
+          promises.push(userDoc.ref.collection('promotions').doc(promotion.promotionId).set(promotion));
         }
       }
-    });
-    await Promise.all(promises)
+    }
   });
+  await Promise.all(promises)
   res.send('');
 }
-
-// Get em Regions OK
-// Olhar cada promoção de cada region OK
-// 
-// Get em users
-// Notificar cada user DO MAIS ALTO NÍVEL que tiver comprado o produto da promoção naquela região
