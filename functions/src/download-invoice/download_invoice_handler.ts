@@ -16,7 +16,7 @@ export const downloadInvoiceHandler = functions.firestore
 
     http.send();
 
-    http.onreadystatechange = async (e) => {
+    http.onreadystatechange = async (_) => {
       if (http.responseText !== '') {
         parseString(http.responseText, async (err, result) => {
           const invoice: InvoiceModel = InvoiceModel.fromObject(result, userId);

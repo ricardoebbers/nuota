@@ -18,7 +18,15 @@ export const createPromotionFromPurchaseHandler = functions.firestore
         if (purchase.product.unitValue / average <= discountThreshold) { // é uma promoção
           const discount = (average - purchase.product.unitValue) / average;
           const promotions = admin.firestore().collection('regions').doc(regionId).collection('promotions');
-          await promotions.add({ purchase, average, discount });
+          const foundDocs = await promotions.where('purchase.product.cEAN', '==', purchase.product.cEAN).get();
+          if (foundDocs.docs.length === 0) {
+            await promotions.add({ purchase, average, discount });
+          } else {
+            const updateDocPromises = foundDocs.docs.map((promotionDoc) => {
+              return promotionDoc.ref.update({ purchase, average, discount });
+            });
+            await Promise.all(updateDocPromises);
+          }
         }
       }
     }

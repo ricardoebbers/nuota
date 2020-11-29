@@ -23,6 +23,13 @@ export interface PurchasesInterface {
   store: StoreInterface
 }
 
+export interface PromotionInterface {
+  promotionId: string,
+  average: number,
+  purchase: PurchasesInterface,
+  discount: number
+}
+
 export class InvoiceModel {
 
   constructor(
