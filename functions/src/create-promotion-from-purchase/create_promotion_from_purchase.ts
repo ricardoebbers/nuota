@@ -19,7 +19,7 @@ export const createPromotionFromPurchaseHandler = functions.firestore
           const discount = (average - purchase.product.unitValue) / average;
           const promotions = admin.firestore().collection('regions').doc(regionId).collection('promotions');
           const foundDocs = await promotions.where('purchase.product.cEAN', '==', purchase.product.cEAN).get();
-          if(foundDocs.docs.length === 0) {
+          if (foundDocs.docs.length === 0) {
             await promotions.add({ purchase, average, discount });
           } else {
             const updateDocPromises = foundDocs.docs.map((promotionDoc) => {
@@ -28,6 +28,6 @@ export const createPromotionFromPurchaseHandler = functions.firestore
             await Promise.all(updateDocPromises);
           }
         }
-      } 
+      }
     }
-});
+  });
