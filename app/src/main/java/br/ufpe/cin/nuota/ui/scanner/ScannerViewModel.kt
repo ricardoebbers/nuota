@@ -1,14 +1,11 @@
 package br.ufpe.cin.nuota.ui.scanner
 
+import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 class ScannerViewModel : ViewModel() {
-
-    companion object {
-        private const val TAG = "ScannerViewModel"
-    }
 
     private val repository = ScannerRepository()
 
