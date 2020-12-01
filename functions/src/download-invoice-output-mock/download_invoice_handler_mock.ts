@@ -10,9 +10,7 @@ import invoiceEstanciaSmallPrices from './resources/invoice-mock-estancia-small-
 import { InvoiceModel } from '../shared/models/invoice-model';
 (global as any).XMLHttpRequest = require('xhr2');
 
-export const downloadInvoiceOutputMockHandler = functions.firestore
-  .document('event_invoice_input/{invoiceId}')
-  .onCreate(async (snap, context) => {
+export const downloadInvoiceOutputMockHandler = functions.https.onRequest(async (_, res) => {
     const promises: Promise<FirebaseFirestore.WriteResult>[] = [];
     promises.push(createSetPromise('1', invoiceBvSmallPrices));
     promises.push(createSetPromise('2', invoiceBvBigPrices));
@@ -22,7 +20,7 @@ export const downloadInvoiceOutputMockHandler = functions.firestore
     promises.push(createSetPromise('6', invoiceEstanciamMedium));
     promises.push(createSetPromise('7', invoiceEstanciaSmallPrices));
     await Promise.all(promises);
-});
+  });
 
 const createSetPromise = (invoiceId: string, invoiceData: InvoiceModel): Promise<FirebaseFirestore.WriteResult> => {
   const writeResult = admin.firestore().collection('event_invoice_output').doc(invoiceId);
