@@ -3,7 +3,7 @@ import * as admin from 'firebase-admin';
 (global as any).XMLHttpRequest = require('xhr2');
 
 export const sendNotificationHandler = functions.firestore
-  .document('notifications')
+  .document('notifications/{notification}')
   .onCreate(async (snap) => {
     const data = snap.data();
     const { token, message} = data;
