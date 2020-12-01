@@ -19,7 +19,7 @@
 
     <fragment
         android:id="@+id/navigation_sales"
-        android:name="br.ufpe.cin.nuota.ui.sales.SalesFragment"
+        android:name="br.ufpe.cin.nuota.ui.promotions.PromotionsFragment"
         android:label="@string/title_sales"
-        tools:layout="@layout/fragment_sales" />
+        tools:layout="@layout/fragment_promotions" />
 </navigation>

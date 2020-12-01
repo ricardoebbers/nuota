@@ -13,11 +13,7 @@ class InvoicesFragment : Fragment() {
 
     private lateinit var invoicesViewModel: InvoicesViewModel
     private lateinit var _binding: FragmentInvoicesBinding
-    private var _invoices: MutableList<InvoiceModel> = mutableListOf()
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding
+    private var _invoices = mutableListOf<InvoiceModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,12 +25,11 @@ class InvoicesFragment : Fragment() {
         _binding = FragmentInvoicesBinding.inflate(inflater, container, false)
         _binding.invoicesList.layoutManager = LinearLayoutManager(context)
         _binding.invoicesList.adapter = InvoicesAdapter(_invoices)
-        val root: View = binding.root
         invoicesViewModel.invoices.observe(viewLifecycleOwner, {
             _invoices.removeAll(_invoices)
             _invoices.addAll(it)
             _binding.invoicesList.adapter?.notifyDataSetChanged()
         })
-        return root
+        return _binding.root
     }
 }

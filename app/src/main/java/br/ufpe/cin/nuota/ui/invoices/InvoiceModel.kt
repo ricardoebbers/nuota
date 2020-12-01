@@ -8,6 +8,11 @@ data class InvoiceModel(var buyerId: String = "", var date: String = "", var pro
     }
 }
 
-data class ProductModel(var cEAN: String = "", var description: String = "", var quantity: Int = 0, var unitValue: Double = 0.0)
+data class ProductModel(
+    var cEAN: String = "",
+    var description: String = "",
+    var quantity: Int = 0,
+    var unitValue: Double = 0.0
+)
 
 data class StoreModel(var addrNeighborhood: String = "", var addrNumber: String = "", var addrStreet: String = "", var cnpj: String = "", var name: String = "")
