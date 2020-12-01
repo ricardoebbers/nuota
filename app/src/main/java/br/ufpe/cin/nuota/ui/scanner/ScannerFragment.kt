@@ -1,5 +1,6 @@
 package br.ufpe.cin.nuota.ui.scanner
 
+import android.content.ContentValues.TAG
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -15,10 +16,6 @@ import com.google.zxing.integration.android.IntentIntegrator
 
 
 class ScannerFragment : Fragment() {
-
-    companion object {
-        private const val TAG = "ScannerFragment"
-    }
 
     private lateinit var scannerViewModel: ScannerViewModel
     private var _binding: FragmentScannerBinding? = null
