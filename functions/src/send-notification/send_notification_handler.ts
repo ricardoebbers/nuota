@@ -17,6 +17,5 @@ export const sendNotificationHandler = functions.firestore
       },
       token
     }
-    console.log(notification);
     await admin.messaging().send(notification)
   });
