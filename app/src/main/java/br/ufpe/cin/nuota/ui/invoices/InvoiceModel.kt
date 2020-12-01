@@ -1,8 +1,11 @@
 package br.ufpe.cin.nuota.ui.invoices
 
-import java.math.BigDecimal
-
-data class InvoiceModel(var buyerId: String = "", var date: String = "", var products: List<ProductModel> = listOf(), var store: StoreModel = StoreModel()) {
+data class InvoiceModel(
+    var buyerId: String = "",
+    var date: String = "",
+    var products: List<ProductModel> = listOf(),
+    var store: StoreModel = StoreModel()
+) {
     override fun toString(): String {
         return "$date - ${store.name} (${products.size})"
     }
@@ -15,4 +18,14 @@ data class ProductModel(
     var unitValue: Double = 0.0
 )
 
-data class StoreModel(var addrNeighborhood: String = "", var addrNumber: String = "", var addrStreet: String = "", var cnpj: String = "", var name: String = "")
+data class StoreModel(
+    var addrNeighborhood: String = "",
+    var addrNumber: String = "",
+    var addrStreet: String = "",
+    var cnpj: String = "",
+    var name: String = ""
+) {
+    fun getAddress(): String {
+        return "$addrStreet, $addrNumber - $addrNeighborhood"
+    }
+}

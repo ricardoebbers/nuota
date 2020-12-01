@@ -18,10 +18,18 @@ data class PromotionModel(
     override fun toString(): String {
         return "${purchase.product.description} com desconto de ${discountPercentage()} em ${purchase.store.name}!"
     }
+
+    fun getAddress(): String {
+        return purchase.getAddress()
+    }
 }
 
 data class PurchaseModel(
     var product: ProductModel = ProductModel(),
     var date: String = "",
     var store: StoreModel = StoreModel()
-)
+) {
+    fun getAddress(): String {
+        return store.getAddress()
+    }
+}
