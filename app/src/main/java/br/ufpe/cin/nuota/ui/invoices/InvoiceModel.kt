@@ -6,8 +6,12 @@ data class InvoiceModel(
     var products: List<ProductModel> = listOf(),
     var store: StoreModel = StoreModel()
 ) {
-    override fun toString(): String {
-        return "$date - ${store.name} (${products.size})"
+    fun title(): String {
+        return "${products.size} produtos em ${store.name}"
+    }
+
+    fun subtitle(): String {
+        return date
     }
 }
 

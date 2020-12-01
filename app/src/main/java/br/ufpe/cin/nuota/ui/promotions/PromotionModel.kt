@@ -14,9 +14,12 @@ data class PromotionModel(
         val df = DecimalFormat("##.##%")
         return df.format(discount)
     }
-
-    override fun toString(): String {
+    fun title(): String {
         return "${purchase.product.description} com desconto de ${discountPercentage()} em ${purchase.store.name}!"
+    }
+
+    fun subtitle(): String {
+        return purchase.date
     }
 
     fun getAddress(): String {
