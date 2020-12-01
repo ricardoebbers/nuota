@@ -8,6 +8,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import br.ufpe.cin.nuota.databinding.ActivityMainBinding
+import br.ufpe.cin.nuota.ui.fcm.MyFirebaseMessagingService
 import com.firebase.ui.auth.AuthUI
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
@@ -16,6 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var user = FirebaseAuth.getInstance().currentUser
+    private var messagingService = MyFirebaseMessagingService();
 
     companion object {
         private const val RC_SIGN_IN = (Math.PI * 1000).toInt()
@@ -30,6 +32,7 @@ class MainActivity : AppCompatActivity() {
         if (user == null) {
             startAuthActivity()
         }
+        messagingService.sendRegistrationTokenToServer()
         super.onCreate(savedInstanceState)
         startMainActivity()
     }
