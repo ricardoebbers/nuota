@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
     private var user = FirebaseAuth.getInstance().currentUser
-    private var messagingService = MyFirebaseMessagingService();
+    private var messagingService = MyFirebaseMessagingService()
 
     companion object {
         private const val RC_SIGN_IN = (Math.PI * 1000).toInt()
