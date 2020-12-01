@@ -29,14 +29,16 @@ class PromotionsAdapter(
     ) :
         RecyclerView.ViewHolder(binding.root), View.OnClickListener {
 
-        private var title: TextView = binding.rowLayoutTitle
+        private var title: TextView = binding.tvTitle
+        private var subtitle: TextView = binding.tvSubtitle
 
         init {
             this.itemView.setOnClickListener(this)
         }
 
         fun updateInvoice(promotionModel: PromotionModel) {
-            title.text = promotionModel.toString()
+            title.text = promotionModel.title()
+            subtitle.text = promotionModel.subtitle()
         }
 
         override fun onClick(view: View?) {

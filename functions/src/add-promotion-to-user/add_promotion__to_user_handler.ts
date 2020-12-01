@@ -45,21 +45,21 @@ const setPromotionsToUsers = async (promotions: PromotionInterface[][], usersId:
   usersCollection.forEach(async userDoc => {
     const userId = userDoc.id;
     let notificateUser = false;
-    const purchasesId: string[] = [];
+    const purchasesMap: Map<string, number> = new Map();
     await userDoc.ref.collection('purchases').get().then(purchasesSnapshot => {
       purchasesSnapshot.forEach(purchasesDoc => {
-        purchasesId.push(purchasesDoc.id);
+        purchasesMap.set(purchasesDoc.id, 1);
       });
     });
 
     for (const [index, regionUserList] of usersId.entries()) {
       const userIndex = regionUserList.findIndex(regionUserId => regionUserId === userId);
       if(userIndex !== -1) {
-        notificateUser = true;
         const userPromotionList = promotions[index].filter(promotion => {
-          return purchasesId.findIndex(purchaseId => purchaseId === promotion.purchase.product.cEAN) !== -1;
+          return purchasesMap.has(promotion.purchase.product.cEAN);
         });
         for (const promotion of userPromotionList) {
+          notificateUser = true;
           promises.push(userDoc.ref.collection('promotions').doc(promotion.promotionId).set(promotion));
         }
       }
@@ -69,14 +69,14 @@ const setPromotionsToUsers = async (promotions: PromotionInterface[][], usersId:
     }
   });
   await Promise.all(promises)
-  res.send('');
+  res.send(promises);
 }
 
 const notificateUsers = async (userId: string): Promise<void> => {
   const message = "Você tem novas promoções!";
   const tokenObject = (await admin.firestore().collection('user_tokens').doc(userId).get()).data();
   if(tokenObject) {
-    await admin.firestore().collection('notification').doc().set({
+    await admin.firestore().collection('notifications').add({
       token: tokenObject.token,
       message
     });

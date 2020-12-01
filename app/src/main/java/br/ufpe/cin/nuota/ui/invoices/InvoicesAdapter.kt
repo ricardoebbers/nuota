@@ -27,10 +27,12 @@ class InvoicesAdapter(
     inner class InvoicesViewHolder(binding: RowLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
-        private var title: TextView = binding.rowLayoutTitle
+        private var title: TextView = binding.tvTitle
+        private var subtitle: TextView = binding.tvSubtitle
 
         fun updateInvoice(invoiceModel: InvoiceModel) {
-            title.text = invoiceModel.toString()
+            title.text = invoiceModel.title()
+            subtitle.text = invoiceModel.subtitle()
         }
     }
 }

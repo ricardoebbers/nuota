@@ -8,13 +8,14 @@ export const sendNotificationHandler = functions.firestore
     const data = snap.data();
     const { token, message} = data;
     const notification = {
-      message: {
-        data: {
-          message
-        }
+      data: {
+        message
+      },
+      notification: {
+        title: message,
+        body: "Abre o app e dá uma conferida!"
       },
       token
     }
-
     await admin.messaging().send(notification)
   });
